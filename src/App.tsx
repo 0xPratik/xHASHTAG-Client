@@ -1,25 +1,30 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import {Heading,Container,Box} from "@chakra-ui/react"
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link,
+  Redirect
+} from "react-router-dom";
+
+//My Imports
+import HashTagsTable from "./components/HashtagsTable/Index"
+import Trade from "./components/trade/index"
+import NavBar from "./components/navbar"
+
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Container maxW="container.xl" >
+      <NavBar />
+      <Switch>
+        <Route exact path='/table' component={HashTagsTable} />
+        <Route exact path='/trade' component={Trade} />
+        <Redirect from='/' to='/table' />
+      </Switch>
+    </Container>
   );
 }
 
